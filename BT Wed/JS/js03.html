@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 03: Giải phương trình bậc 2</title>
+    <link rel="stylesheet" href="CSS/js03.css" />
+    <script>
+      function PTB2() {
+        var a = parseInt(document.getElementById("a").value);
+        var b = parseInt(document.getElementById("b").value);
+        var c = parseInt(document.getElementById("c").value);
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+          alert("Nhập chưa đúng");
+          return false;
+        }
+        var kq, x1, x2;
+        if (a == 0) {
+          if (b == 0)
+            if (c == 0) kq = "Phương trình vô số nghiệm";
+            else kq = "Phương trình vô nghiệm";
+          else {
+            x1 = -c / b;
+            kq = "Phương trình có nghiệm là " + x1.toFixed(2);
+          }
+        } else {
+          var delta = b * b - 4 * a * c;
+          if (delta == 0) {
+            x1 = -b / (2 * a);
+            kq = "Phương trình có nghiệm là " + x1.toFixed(2);
+          } else if (delta < 0) kq = "Phương trình vô số nghiệm";
+          else {
+            x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            x2 = (-b + Math.sqrt(delta)) / (2 * a);
+            kq =
+              "Phương trình có 2 nghiệm: <br>" +
+              x1.toFixed(2) +
+              " và " +
+              x2.toFixed(2);
+          }
+        }
+        document.getElementById("ketqua").innerHTML = kq;
+      }
+      function xoa() {
+        document.getElementById("a").value = "";
+        document.getElementById("b").value = "";
+        document.getElementById("c").value = "";
+        document.getElementById("ketqua").innerHTML = "";
+      }
+    </script>
+  </head>
+  <body>
+    <table>
+      <caption>
+        <b
+          >CHƯƠNG TRÌNH GIẢI PHƯƠNG TRÌNH BẬC 2
+          <br />
+          ax<sup>2</sup>+ bx + c = 0
+        </b>
+      </caption>
+      <tr>
+        <td>a=</td>
+        <td>
+          <input type="text" id="a" size="10" />
+        </td>
+      </tr>
+      <tr>
+        <td>b=</td>
+        <td>
+          <input type="text" id="b" size="10" />
+        </td>
+      </tr>
+      <tr>
+        <td>c=</td>
+        <td>
+          <input type="text" id="c" size="10" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button id="btGiai" onclick="PTB2()">Giải</button>
+          <button id="btXoa" onclick="xoa()">Xóa</button>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="2">
+          <span id="ketqua"></span>
+        </th>
+      </tr>
+    </table>
+    <p id="ketqua"></p>
+  </body>
+</html>
